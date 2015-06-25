@@ -1,18 +1,21 @@
 # Monitoring OpenStack with Zabbix
 
-This repository contains zabbix resources for monitoring OpenStack environment.
+This repository contains Zabbix resources for monitoring OpenStack environment.
 
 # Features
 The following features are currently available:
-  * Automatic endpoints discovery via keystone API
-  * Endpoints monitoring with predefined triggers
-  * Configuration using macros
+  * Automatically discover (using API), add service endpoints and monitor their availability and performance 
+  * Automatically discover (using API), add hypervisor hosts and monitor availability, performance and other metrics
+  * Active monitoring of OpenStack nodes - connections are initiated by agents installed on nodes
+  * Flexible configuration based on variables (Zabbix macros)
 
 # Installation
-  * Install **python-keystoneclient** on you Zabbix server
+  * Install **python-keystoneclient** and **python-novaclient** on you Zabbix server
+  * Install Zabbix agents on your OpenStack nodes and define **ServerActive** with IP address of the Zabbix server 
   * Copy scripts from  **server/externalscripts/** to your Zabbix server to **ExternalScripts** location
-  * Import **templates/Template_OpenStack_Services.xml** template into your Zabbix server
-  * Add OpenStack controller host (the one with Keystone component) to Zabbix and link **Template OpenStack Services** template to it
+  * Import templates from **templates/** into your Zabbix server
+  * Add OpenStack controller host (the one with Keystone component) to Zabbix and link **Template OpenStack** template to it
+  * Wait for Zabbix to add discovered hypervisor hosts and endpoints items (look for them in the controller host)
 
 # Configuration
 Configure the following macros on the **controller host level** in Zabbix so that server could connect to keystone:
@@ -20,6 +23,8 @@ Configure the following macros on the **controller host level** in Zabbix so tha
   * **{$OS_TENANT}** - OpenStack tenant name (*admin* by default)
   * **{$OS_USER}** - OpenStack user name (*admin* by default)
   * **{$OS_PASSWORD}** - OpenStack user password (*admin* by default)
+
+
 
 # License
 This project is licensed under Apache License 2.0
