@@ -34,7 +34,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>openstack-discovery[hypervisors,{$OS_AUTHURL},{$OS_TENANT},{$OS_USER},{$OS_PASSWORD}]</key>
+                    <key>openstack-discovery["hypervisors","{$OS_AUTHURL}","{$OS_TENANT}","{$OS_USER}","{$OS_PASSWORD}"]</key>
                     <delay>3600</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -90,7 +90,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>openstack-discovery[endpoints,{$OS_AUTHURL},{$OS_TENANT},{$OS_USER},{$OS_PASSWORD}]</key>
+                    <key>openstack-discovery["endpoints","{$OS_AUTHURL}","{$OS_TENANT}","{$OS_USER}","{$OS_PASSWORD}"]</key>
                     <delay>3600</delay>
                     <status>0</status>
                     <allowed_hosts/>
