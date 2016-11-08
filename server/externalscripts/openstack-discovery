@@ -12,14 +12,13 @@ import re
 try:
   from keystoneclient.v2_0 import client as keystone_client
   from keystoneclient.auth.identity import v2
-  from keystoneclient import session
-  from novaclient import client as nova_client
+  from novaclient import client
 except ImportError:
   print 'ZBX_NOTSUPPORTED\x00 Failed to import openstack python modules'
   exit(1)
 
 def get_host_port(url):
-    m = re.match('https?://(\d+\.\d+\.\d+\.\d+):(\d+)',url)
+    m = re.match('htt.?://(.*):(\d+)',url)
     if m:
         return (m.group(1),m.group(2))
 
@@ -39,10 +38,7 @@ def discover_endpoints(auth_url, tenant_name, username, password):
     print_json(services)
 
 def discover_hypervisors(auth_url, tenant_name, username, password):
-    auth = v2.Password(username=username, password=password, tenant_name=tenant_name, auth_url=auth_url)
-    sess = session.Session(auth=auth)
-
-    conn = nova_client.Client(2, session=sess)
+    conn = nova = client.Client(2, username, password, tenant_name, auth_url)
 
     hypervisors = []
     for h in conn.hypervisors.list(detailed=True):
