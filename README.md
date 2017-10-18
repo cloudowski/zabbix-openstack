@@ -14,7 +14,7 @@ The following features are currently available:
   * Install Zabbix agents on your OpenStack nodes and define **ServerActive** with IP address of the Zabbix server 
   * Copy scripts from  **server/externalscripts/** to your Zabbix server to **ExternalScripts** location
   * Import templates from **templates/** into your Zabbix server
-  * Add OpenStack controller host (the one with Keystone component) to Zabbix and link **Template OpenStack** template to it
+  * Add OpenStack controller host (the one with Keystone component) to Zabbix and link **Template OpenStack** or **Template OpenStack Identity V3**  template to it
   * Wait for Zabbix to add discovered hypervisor hosts and endpoints items (look for them in the controller host)
 
 # Configuration
@@ -23,7 +23,10 @@ Configure the following macros on the **controller host level** in Zabbix so tha
   * **{$OS_TENANT}** - OpenStack tenant name (*admin* by default)
   * **{$OS_USER}** - OpenStack user name (*admin* by default)
   * **{$OS_PASSWORD}** - OpenStack user password (*admin* by default)
-
+  * **{$OS_USER}** - OpenStack user name (*admin* by default)
+  * **{$OS_PASSWORD}** - OpenStack user password (*admin* by default)
+  * **{$OS_USER_DOMAIN_NAME}** - (only for Identity API v3) OpenStack User domain name (*Default* by default)
+  * **{$OS_PROJECT_DOMAIN_NAME}}** - (only for Identity API v3) OpenStack User domain name (*Default* by default)
 
 
 # License
