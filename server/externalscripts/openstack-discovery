@@ -64,8 +64,6 @@ def discover_endpoints_v3(auth_url, tenant_name, username, password, user_domain
     for e in conn.endpoints.list(interface='public'):
         host = get_host_port(e.url)
         if e.enabled:
-            print(e)
-            print(host)
             service = conn.services.get(e.service_id)
             services.append({'{#OS_SERVICENAME}':service.name, '{#OS_SERVICEURL}':e.url, '{#OS_SERVICEHOST}':host[0], '{#OS_SERVICEPORT}':host[1] })
 
